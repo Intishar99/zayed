@@ -7,7 +7,7 @@ valid_password = "password"
 class LandingPage:
     @staticmethod
     def show():
-        st.title("Welcome to Your Mental Health Tracker")
+        st.title("Welcome to Your Mental Health Tracker wip")
 
         # Add buttons for options
         option = st.radio("Choose an option:", ["Schedule an Appointment", "Daily Diary"])
@@ -52,7 +52,7 @@ def login():
             st.success("Login successful!")
 
             # Clear login page content
-            st.empty()
+            st.text("")
 
             # Show the landing page
             LandingPage.show()
@@ -61,3 +61,4 @@ def login():
 
 if __name__ == "__main__":
     login()
+
