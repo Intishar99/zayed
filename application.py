@@ -4,6 +4,41 @@ import streamlit as st
 valid_username = "demo"
 valid_password = "password"
 
+class LandingPage:
+    @staticmethod
+    def show():
+        st.title("Welcome to Your Mental Health Tracker")
+
+        # Add buttons for options
+        option = st.radio("Choose an option:", ["Schedule an Appointment", "Daily Diary"])
+
+        if option == "Schedule an Appointment":
+            LandingPage.schedule_appointment()
+        elif option == "Daily Diary":
+            LandingPage.daily_diary()
+
+    @staticmethod
+    def schedule_appointment():
+        st.header("Schedule an Appointment")
+        st.write("This feature is coming soon!")
+
+    @staticmethod
+    def daily_diary():
+        st.header("Daily Diary")
+
+        # Questions about mental health on a Likert scale
+        questions = [
+            "How would you rate your overall mood today?",
+            "On a scale of 1 to 10, how well did you sleep last night?",
+            "How would you rate your stress level today?",
+            "How motivated do you feel today?",
+            "On a scale of 1 to 10, how satisfied are you with your day?"
+        ]
+
+        # Display Likert scale questions
+        for i, question in enumerate(questions, start=1):
+            response = st.slider(question, 1, 10, 5, key=f"question_{i}")
+
 def login():
     st.title("Login Page")
 
@@ -15,7 +50,12 @@ def login():
     if st.button("Login"):
         if username == valid_username and password == valid_password:
             st.success("Login successful!")
-            # Redirect to the landing page or perform further actions
+
+            # Clear login page content
+            st.empty()
+
+            # Show the landing page
+            LandingPage.show()
         else:
             st.error("Invalid credentials. Please try again.")
 
